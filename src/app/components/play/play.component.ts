@@ -7,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlayComponent implements OnInit {
 
-  constructor() { }
+  username: string;
+
+  constructor() {
+    this.username = "";
+  }
 
   ngOnInit() {
   }
