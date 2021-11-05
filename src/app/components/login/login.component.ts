@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../../../app/services/login.service';
 
@@ -9,23 +9,26 @@ import { LoginService } from '../../../app/services/login.service';
 })
 export class LoginComponent implements OnInit {
 
-  username : string;
+  name: string;
 
   constructor(
     private loginService: LoginService,
     private router: Router
   ) {
-    this.username = "";
+    this.name = "";
   }
 
   ngOnInit() {
   }
 
   login(name:string){
-    let result = this.loginService.verifyUser(name);
-    if (result){
-      this.router.navigate(["/play"]);
+    if(name){
+      let result = this.loginService.verifyUser(name);
+      if (result){
+        this.router.navigate(["/play"]);
+      }
     }
+
   }
 
 }

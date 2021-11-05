@@ -1,15 +1,13 @@
 <div class="container bg-dark p-2 text-white">
-      <div class="row align-items-center mt-5 mb-2 p-2">
-        <div class="col-1"></div>
-        <div class="col-10 text-center">
+      <div class="row align-items-center mt-4 mb-2 p-2">
+        <div class="col-12 text-center">
           <img
-            src="../../../assets/images/ppt_small.png"
-            class="img-fluid rounded"
+            src="../../../assets/images/ppt_small_blue.png"
+            class="img-fluid rounded-circle border border-5"
             alt="">
         </div>
-        <div class="col-1"></div>
       </div>
-      <div class="row align-items-center mt-2 mb-2">
+      <div class="row align-items-center mt-4 mb-2">
         <div class="col-1"></div>
         <div class="col-10 text-center">
           <h4>New player's name</h4>
@@ -23,10 +21,10 @@
           <input
           class="form-control"
           type="text"
-          name="username"
           required
           placeholder="Name"
-          [(ngModel)]="this.username"
+          [(ngModel)]="this.name"
+          (keyup.enter)="this.login(this.name)"
         />
         </div>
         <div class="col-1"></div>
@@ -36,8 +34,8 @@
         <div class="col-10 text-center">
           <button
             type="button"
-            class="btn btn-success btn-lg text-dark bg-opacity-25"
-            (click)= "this.login(this.username)"
+            class="btn btn-primary btn-lg text-dark"
+            (click)= "this.login(this.name)"
           >JOIN</button>
         </div>
         <div class="col-1"></div>
