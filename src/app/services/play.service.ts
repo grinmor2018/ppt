@@ -16,7 +16,7 @@ export class PlayService {
     this.router.navigate(['/login']);
   }
 
-  checkResult(myBet:Bet, yourBet:Bet): number{
+  async checkResult(myBet:Bet, yourBet:Bet): Promise<number>{
     console.log(myBet, yourBet);
     let result = 0
     if (myBet === yourBet){

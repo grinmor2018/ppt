@@ -12,16 +12,17 @@ import { LoginService } from '../../../app/services/login.service';
 export class PlayComponent implements OnInit {
 
   username: string = "";
-  myBet: Bet;
-  yourBet: Bet;
+  myBet: Bet= Bet.Paper;
+  yourBet: Bet = Bet.Paper;
+  points: number = 0;
+  begin: boolean = false;
+  beginI : boolean = false;
 
   constructor(
     private playService: PlayService,
     private loginService: LoginService
   ) {
-    this.username = this.loginService.recoverUser('name');
-    this.myBet= Bet.Paper;
-    this.yourBet= Bet.Paper;
+    this.reset();
   }
 
   ngOnInit() {
@@ -32,16 +33,28 @@ export class PlayComponent implements OnInit {
   }
 
   async bet(bet: number){
-    this.yourBet= Bets[bet-1];
-    console.log("myBet: ",this.yourBet);
-    setTimeout(() => {this.bot()},1000);
+      this.begin= true;
+      this.yourBet= Bets[bet-1];
+      console.log("myBet: ",this.yourBet);
+      setTimeout(async () => {await this.bot()},1000);
   }
 
-  bot(){
+  async bot(){
+    this.beginI = true;
     let bet = this.playService.random(1,3);
     this.myBet = Bets[bet-1];
-    let points = this.playService.checkResult(this.yourBet,this.myBet);
-    console.log(points);
+    let points = await this.playService.checkResult(this.myBet,this.yourBet);
+    this.points = this.points + points;
+    console.log(this.points);
+  }
+
+  reset(){
+    this.username = this.loginService.recoverUser('name');
+    this.myBet= Bet.Paper;
+    this.yourBet= Bet.Paper;
+    this.begin = false;
+    this.beginI = false;
+    this.points = 0;
   }
 
 }
