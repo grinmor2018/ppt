@@ -18,7 +18,7 @@ export class GameService {
   ) {}
 
   back(){
-    this.router.navigate(['/login']);
+    this.router.navigate(['/home']);
   }
 
   async checkResult(myBet:Bet, yourBet:Bet): Promise<number>{
