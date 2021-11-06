@@ -1,0 +1,57 @@
+<div class="container bg-dark p-2 text-white">
+  <div class="row align-items-center mb-2">
+    <div class="col-10">
+      <h4>Hello {{username}}, select your option</h4>
+    </div>
+
+    <div class="col-2" (click)= "this.back()">
+      <img
+        src="../../../assets/images/back_small.png"
+        class="rounded-circle"
+        alt="">
+    </div>
+  </div>
+  <hr>
+
+  <div class="row align-items-center mt-3 mb-2">
+    <div class="col-12 text-center"><h1>Score: {{points}}</h1></div>
+  </div>
+  <div class="row align-items-center mt-5 mb-2" >
+
+      <button class="btn btn-dark col-4" (click)="this.bet(1)" id="bet1">
+        <img src="../../../assets/images/IMG_20211104_170600-01-01-01.jpg"
+          class="img-fluid "
+          style="width: 15vh;"
+          alt="">
+      </button>
+
+
+      <button class="btn btn-dark col-4" (click)="this.bet(2)" id="bet2">
+        <img src="../../../assets/images/IMG_20211104_170541-01-01-02.jpg"
+          class="img-fluid"
+          style="width: 15vh;"
+          alt="">
+      </button>
+
+      <button class="btn btn-dark col-4" (click)="this.bet(3)" id="bet3">
+        <img src="../../../assets/images/IMG_20211104_170553-01-02-01.jpg"
+          class="img-fluid"
+          style="width: 15vh;"
+          alt="">
+      </button>
+
+  </div>
+  <div class="row align-items-center mt-3 mb-2" *ngIf="begin">
+    <div class="col-6"><h5>Your bet...</h5></div>
+    <div class="col-6"><h3>{{yourBet}}</h3></div>
+  </div>
+  <div class="row align-items-center mt-3 mb-2" *ngIf="beginI">
+    <div class="col-6"><h5>My bet...</h5></div>
+    <div class="col-6"><h3>{{myBet}}</h3></div>
+  </div>
+  <div class="row align-items-center mt-3 mb-2" *ngIf="begin">
+    <div class="col-12 text-center" *ngIf="win && !tied && beginI"><h4>YOU WIN!</h4></div>
+    <div class="col-12 text-center" *ngIf="!win && !tied && beginI"><h4>YOU LOOSE</h4></div>
+    <div class="col-12 text-center" *ngIf="tied && !win && beginI"><h4>YOU TIED</h4></div>
+  </div>
+</div>
