@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { Bet } from '../models/bets-enum';
-import { Player } from '../models/player.model';
 import { HomeService } from './home.service';
+import { Injectable } from '@angular/core';
+import { Player } from '../models/player.model';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class GameService {
     this.router.navigate(['/home']);
   }
 
-  async checkResult(myBet:Bet, yourBet:Bet): Promise<number>{
+  async checkResult(myBet:Bet, yourBet:Bet):Promise<number>{
     let result = 0;
     if (myBet === yourBet){
       result = 1;
@@ -50,8 +50,8 @@ export class GameService {
     return result
   }
 
-  async updateUser(player: Player, points: number){
-    this.players = await this.homeService.getPlayers();
+  updateUser(player: Player, points: number): Player[]{
+    this.players = this.homeService.getPlayers();
     let playerUpdate = this.players.find(p=>p.name===player.name);
     if(playerUpdate!==undefined){
       let i = this.players.indexOf(playerUpdate);
@@ -60,14 +60,15 @@ export class GameService {
       this.players.push(playerUpdate);
       localStorage.setItem('players',JSON.stringify(this.players));
     }
+    return this.players
   }
 
   random(min: number, max: number) {
     return Math.floor((Math.random() * (max - min + 1)) + min);
   }
 
-  async recoverUser(name:string): Promise<Player>{
-    let players = await this.homeService.getPlayers();
+  recoverUser(name:string): Player{
+    let players = this.homeService.getPlayers();
     let player: any;
     if (players){
       player = players.find(p=>p.name===name);

@@ -1,9 +1,8 @@
+import { Bet, Bets } from '../../../app/models/bets-enum';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Player } from 'src/app/models/player.model';
-import { Bet,Bets } from '../../../app/models/bets-enum';
 import { GameService } from '../../../app/services/game.service';
 import { HomeService } from '../../services/home.service';
+import { Player } from 'src/app/models/player.model';
 
 @Component({
   selector: 'app-game',
@@ -37,13 +36,14 @@ export class GameComponent implements OnInit {
     this.gameService.back();
   }
 
-  async bet(bet: number){
+  async bet(bet: number): Promise<Bet>{
     this.win = false;
     this.tied = false;
     this.begin= true;
     this.yourBet= Bets[bet-1];
     this.disabledButtons();
     setTimeout(async () => {await this.bot()},1000);
+    return this.yourBet
   }
 
   async bot(){
@@ -87,13 +87,13 @@ export class GameComponent implements OnInit {
   }
 
   async reset(){
-    this.player = await this.gameService.recoverUser(this.homeService.player.name);
+    this.player = this.gameService.recoverUser(this.homeService.player.name);
     this.username = this.player.name;
+    this.points = this.player.score;
     this.myBet= Bet.Paper;
     this.yourBet= Bet.Paper;
     this.begin = false;
     this.beginI = false;
-    this.points = this.player.score;
   }
 
 }

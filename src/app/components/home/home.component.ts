@@ -1,6 +1,7 @@
-import { Component, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HomeService } from '../../services/home.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -9,22 +10,28 @@ import { HomeService } from '../../services/home.service';
 })
 export class HomeComponent implements OnInit {
 
-  name: string;
+  form: FormGroup = new FormGroup({});
+  result: boolean = false;
 
   constructor(
     private homeService: HomeService,
-    private router: Router
-  ) {
-    this.name = "";
-  }
+    private router: Router,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit() {
+    this.form = this.fb.group({
+      name: ['',[Validators.required]]
+    })
   }
 
-  async login(username:string){
+  login(){
+    let username = this.form.value.name;
+    console.log(this.result);
     if(username){
-      let result = await this.homeService.verifyUser(username);
-      if (result){
+      this.result = this.homeService.verifyUser(username);
+      console.log(this.result);
+      if (this.result){
         this.router.navigate(["/game"]);
       }
     }

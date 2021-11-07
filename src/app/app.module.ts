@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { Approutes } from './app-routing.module';
@@ -17,7 +17,8 @@ import { GameComponent } from './components/game/game.component';
   imports: [
     BrowserModule,
     RouterModule.forRoot(Approutes, { relativeLinkResolution: 'legacy' } ),
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -4,14 +4,14 @@ import { GameComponent } from './components/game/game.component';
 
 
 export const Approutes: Routes = [
-	{ path: '',
+	/* { path: '',
     redirectTo: '/home',
     pathMatch: 'full'
-  },
-  /* {
+  }, */
+  {
     path: '',
     component: HomeComponent
-  }, */
+  },
   {
     path: 'home',
     component: HomeComponent

@@ -1,7 +1,9 @@
+import { By } from '@angular/platform-browser';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HomeComponent } from './home.component';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { HomeComponent } from './home.component';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -9,7 +11,11 @@ describe('HomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
+      imports: [
+        RouterTestingModule,
+        ReactiveFormsModule,
+        FormsModule
+      ],
       declarations: [ HomeComponent ]
     })
     .compileComponents();
@@ -24,4 +30,26 @@ describe('HomeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('Form must return invalid', ()=> {
+    const name = component.form.controls['name'];
+    name.setValue('');
+    expect (component.form.invalid).toBeTrue();
+  });
+
+  it('Form must return valid', ()=> {
+    const name = component.form.controls['name'];
+    name.setValue('Berta');
+    expect (component.form.invalid).toBeFalse();
+  });
+
+  it('On click Join, returns true', ()=> {
+    const name = component.form.controls['name'];
+    name.setValue('Berta');
+    const btnElement = fixture.debugElement.query(By.css('button'));
+    btnElement.nativeElement.removeAttribute("disabled");
+    btnElement.nativeElement.click();
+    expect(component.result).toBeTrue();
+  })
+
 });

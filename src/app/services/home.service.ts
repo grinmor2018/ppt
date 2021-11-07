@@ -14,7 +14,7 @@ export class HomeService {
     this.reset();
    }
 
-  async getPlayers(): Promise<Player[]>{
+  getPlayers(): Player[]{
     if(localStorage.getItem('players')){
       let players = localStorage.getItem('players');
       if (players !== null){
@@ -26,22 +26,22 @@ export class HomeService {
     return this.players
   }
 
-  async reset(){
+  reset(){
     console.log("reset")
     this.player = {
       name: "",
       score: 0
     }
-    await this.getPlayers();
+    this.getPlayers();
   }
 
-  async verifyUser(name: string): Promise<boolean>{
+  verifyUser(name: string): boolean{
     let player: any;
     this.player= {
       name: name,
       score: 0
     };
-    await this.getPlayers();
+    this.getPlayers();
     if(this.players){
       player = this.players.find(p=>p.name===name);
       if(!player){
