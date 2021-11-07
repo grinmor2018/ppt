@@ -15,7 +15,14 @@ export class HomeService {
    }
 
   async getPlayers(): Promise<Player[]>{
-    this.players = await JSON.parse(localStorage.getItem('players')|| "{}");
+    if(localStorage.getItem('players')){
+      let players = localStorage.getItem('players');
+      if (players !== null){
+        this.players = JSON.parse(players);
+      }
+    } else {
+      this.players = []
+    }
     return this.players
   }
 

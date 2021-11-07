@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'PPT';
-  constructor(){
+  /* constructor(){
     localStorage.setItem('players',"[]");
-  }
+  } */
 }
