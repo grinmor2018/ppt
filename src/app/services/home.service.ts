@@ -36,26 +36,19 @@ export class HomeService {
   }
 
   async verifyUser(name: string): Promise<boolean>{
-    console.log("name: ", name);
     let player: any;
     this.player= {
       name: name,
       score: 0
     };
     await this.getPlayers();
-    console.log("this.players antes: ",this.players);
     if(this.players){
       player = this.players.find(p=>p.name===name);
-      console.log("player: ",player);
       if(!player){
-        console.log('entra')
         this.players.push(this.player);
       }
     }
-
     localStorage.setItem('players',JSON.stringify(this.players));
-    console.log("this.players despues: ",this.players);
-    console.log("this.player: ",this.player);
     return true
   }
 
