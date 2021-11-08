@@ -3,9 +3,9 @@ const path = require('path');
 
 const app = express();
 
-app.use(express.static(__dirname+'/dist/PPT'));
+app.use(express.static('dist/PPT'));
 app.get('/',function(req,res){
-    res.sendFile(path.join(__dirname+'/dist/PPT/index.html'));
-});
+    res.sendFile(path.join('../dist/PPT/index.html'));
+  });
 
 app.listen(process.env.PORT || 8080);
