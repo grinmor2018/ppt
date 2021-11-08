@@ -23,6 +23,7 @@ export class RankingComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.homeService.scrollTop();
   }
 
   back(){

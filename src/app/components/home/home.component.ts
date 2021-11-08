@@ -20,9 +20,10 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.homeService.scrollTop();
     this.form = this.fb.group({
       name: ['',[Validators.required]]
-    })
+    });
   }
 
   login(){

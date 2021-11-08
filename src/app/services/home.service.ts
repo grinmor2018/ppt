@@ -35,6 +35,11 @@ export class HomeService {
     this.getPlayers();
   }
 
+  scrollTop() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+
   verifyUser(name: string): boolean{
     let player: any;
     this.player= {

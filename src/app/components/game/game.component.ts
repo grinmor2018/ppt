@@ -30,6 +30,7 @@ export class GameComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.homeService.scrollTop();
   }
 
   back(){
