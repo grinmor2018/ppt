@@ -1,6 +1,7 @@
-import { Routes } from '@angular/router';
-import { HomeComponent } from './components/home/home.component';
 import { GameComponent } from './components/game/game.component';
+import { HomeComponent } from './components/home/home.component';
+import { RankingComponent } from './components/ranking/ranking.component';
+import { Routes } from '@angular/router';
 
 
 export const Approutes: Routes = [
@@ -19,6 +20,10 @@ export const Approutes: Routes = [
   {
     path: 'game',
     component: GameComponent
+  },
+  {
+    path: 'rankings',
+    component: RankingComponent
   },
   {
     path: '**',

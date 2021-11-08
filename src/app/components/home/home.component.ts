@@ -37,4 +37,8 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  rankings(){
+    this.router.navigate(["/rankings"]);
+  }
+
 }
